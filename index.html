@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Vue Mastery</title>
-  <!-- Import Styles -->
-  <link rel="stylesheet" href="./assets/styles.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-</head>
-
-<body>
-  <div id="app">
-    <div class="nav-bar"></div>
-    <div class="character-display">
-      <div class="character-container">
-        <div class="character-image">
-          <!-- <img src="" alt="Profile image"> -->
-        </div>
-        <div class="character-info" >
-          <h1>Name</h1>
-          <h2>Specie</h2>
-          <p>Description</p>    
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      <div class="favorites">Favorites {{nFavorites}}</div>
+      <div class="character-display">
+        <div class="character-container" v-for="character in characters">
+          <character-display
+            :character="character"
+            :favorite="addFavorite(character.id)"
+            @add-to-favorites="addFavorite(character.id)"
+            @remove-to-favorites="removeToFavorite(character.id)"
+          ></character-display>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 
-
-
+  <script src="./main.js"></script>
+  <script src="./components/characterDisplay.js"></script>
+  <script>
+    const mountedApp = app.mount("#app");
+  </script>
 </html>
